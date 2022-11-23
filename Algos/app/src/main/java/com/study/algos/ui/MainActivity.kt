@@ -481,6 +481,15 @@ fun Algorithms() {
             println("Algorithms Check fastPower 5^5 ${PowerOfNum.fastPower(5, 5)}")
             println("Algorithms Check fastPower 5^3 ${PowerOfNum.fastPower(5, 3)}")
         }
+        Label(text = "Print spell") {
+            PrintSpell.printSpell(123456)
+        }
+        Label(text = "Tiles problem") {
+            println("Algorithms Times 4*3 is ${Tiles.tilesProblem(4,3)}")
+        }
+        Label(text = "Binary problem") {
+            println("Algorithms Binary problem of 3 ${BinaryProblem.binaryProblem(3)}")
+        }
     }
 }
 
