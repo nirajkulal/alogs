@@ -150,6 +150,18 @@ class LinkedList {
 }
 
 fun main() {
+    var linkedList = LinkedList()
+    linkedList.addItem(4)
+    linkedList.addItem(3)
+    linkedList.addItem(10)
+    linkedList.addItem(100)
+    linkedList.addItem(6)
+    linkedList.addItem(30)
+    linkedList.addItem(1)
+    linkedList.traverse()
+    sort(linkedList)
+    println("Sorted -- ")
+    linkedList.traverse()
 }
 
 fun merge(linkedList: LinkedList?, linkedList2: LinkedList?) {
@@ -164,13 +176,30 @@ fun merge(linkedList: LinkedList?, linkedList2: LinkedList?) {
         node1 = node1.next
         node2 = node2.next
     }
-    while (node1!=null){
+    while (node1 != null) {
         mergedList.addItem(node1.data)
         node1 = node1.next
     }
-    while (node2!=null){
+    while (node2 != null) {
         mergedList.addItem(node2.data)
         node2 = node2.next
     }
     mergedList.traverse()
+}
+
+fun sort(linkedList: LinkedList) {
+    var outerLoop = linkedList.head
+    var innerLoop: Node?
+    while (outerLoop != null) {
+        innerLoop = linkedList.head
+        while (innerLoop?.next != null) {
+            if (innerLoop.data > innerLoop.next?.data!!) {
+                val temp = innerLoop.data
+                innerLoop.data = innerLoop.next?.data!!
+                innerLoop.next?.data = temp
+            }
+            innerLoop = innerLoop.next
+        }
+        outerLoop = outerLoop.next
+    }
 }
