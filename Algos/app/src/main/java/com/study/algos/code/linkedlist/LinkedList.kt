@@ -12,7 +12,6 @@ class LinkedList {
             head = Node(item, null)
         } else {
             val node = Node(item, null)
-
             /**
              * Identify last node
              */
@@ -34,7 +33,6 @@ class LinkedList {
 
     fun reverse() {
         println(" reverse")
-
         var looper = head
         var prev: Node? = null
         while (looper != null) {
@@ -45,7 +43,6 @@ class LinkedList {
         }
         head = prev
     }
-
 }
 
 public fun main() {
@@ -55,7 +52,5 @@ public fun main() {
     linkedList.addItem(3)
     linkedList.addItem(4)
     linkedList.addItem(5)
-    linkedList.traverse()
-    linkedList.reverse()
     linkedList.traverse()
 }
