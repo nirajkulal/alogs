@@ -12,6 +12,7 @@ class LinkedList {
             head = Node(item, null)
         } else {
             val node = Node(item, null)
+
             /**
              * Identify last node
              */
@@ -21,6 +22,14 @@ class LinkedList {
             }
             looper?.next = node
         }
+    }
+
+    fun addToStart(item: Int) {
+        val node = Node(item, null)
+        if (head != null) {
+            node.next = head
+        }
+        head = node
     }
 
     fun traverse() {
@@ -45,7 +54,7 @@ class LinkedList {
     }
 }
 
-public fun main() {
+fun main() {
     val linkedList = LinkedList()
     linkedList.addItem(1)
     linkedList.addItem(2)
@@ -53,4 +62,14 @@ public fun main() {
     linkedList.addItem(4)
     linkedList.addItem(5)
     linkedList.traverse()
+
+    println("linkedList2")
+
+    val linkedList2 = LinkedList()
+    linkedList2.addToStart(1)
+    linkedList2.addToStart(2)
+    linkedList2.addToStart(3)
+    linkedList2.addToStart(4)
+    linkedList2.addToStart(5)
+    linkedList2.traverse()
 }
