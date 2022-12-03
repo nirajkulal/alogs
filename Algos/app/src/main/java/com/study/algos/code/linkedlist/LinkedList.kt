@@ -7,6 +7,23 @@ data class Node(
 
 class LinkedList {
     var head: Node? = null
+
+    fun insert(item: Int, pos: Int) {
+        var looper = head
+        var prev = head
+        var index = 0
+        while (looper != null) {
+            if (index ==pos){
+                var node = Node(item,null)
+                prev?.next = node
+                node.next = looper
+            }
+            prev = looper
+            looper = looper.next
+            index++
+        }
+    }
+
     fun addItem(item: Int) {
         if (head == null) {
             head = Node(item, null)
@@ -63,13 +80,17 @@ fun main() {
     linkedList.addItem(5)
     linkedList.traverse()
 
-    println("linkedList2")
-
+    linkedList.insert(30,3)
+    linkedList.insert(40,4)
+    println("inserted -> ")
+    linkedList.traverse()
     val linkedList2 = LinkedList()
     linkedList2.addToStart(1)
     linkedList2.addToStart(2)
     linkedList2.addToStart(3)
     linkedList2.addToStart(4)
     linkedList2.addToStart(5)
+
+    println("linked list ->")
     linkedList2.traverse()
 }
