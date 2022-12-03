@@ -69,7 +69,6 @@ class LinkedList {
             head = Node(item, null)
         } else {
             val node = Node(item, null)
-
             /**
              * Identify last node
              */
@@ -125,6 +124,22 @@ class LinkedList {
             }
         }
     }
+
+    fun kthItem(kth: Int){
+        var fast = head
+        var slow = head
+        var count =0
+        while (count<kth){
+            count++
+            fast = fast?.next
+        }
+
+        while (fast !=null){
+            fast = fast.next
+            slow = slow?.next
+        }
+        println("Kth[$kth] node -> ${slow?.data}")
+    }
 }
 
 fun main() {
@@ -134,5 +149,13 @@ fun main() {
     linkedList.addItem(3)
     linkedList.addItem(4)
     linkedList.addItem(5)
+    linkedList.addItem(6)
+    linkedList.addItem(7)
     linkedList.traverse()
+
+    linkedList.kthItem(1)
+    linkedList.kthItem(2)
+    linkedList.kthItem(3)
+    linkedList.kthItem(4)
+    linkedList.kthItem(5)
 }
