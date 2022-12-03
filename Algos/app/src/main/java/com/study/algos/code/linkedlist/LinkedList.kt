@@ -8,20 +8,60 @@ data class Node(
 class LinkedList {
     var head: Node? = null
 
+    private fun search(item: Int, node: Node?, pos: Int): Int {
+        if (node == null)
+            return -1
+        if (node.data == item) {
+            return pos
+        }
+        return search(item, node.next, pos + 1)
+    }
+
+    fun searchList(item: Int): Int {
+        return search(item, head, 1)
+    }
+
     fun insert(item: Int, pos: Int) {
         var looper = head
-        var prev = head
-        var index = 0
-        while (looper != null) {
-            if (index ==pos){
-                var node = Node(item,null)
-                prev?.next = node
-                node.next = looper
+        var index = 1
+        /**
+         * Insert at 1st position
+         */
+        if (pos == 1) {
+            val node = Node(item, null)
+            val temp = head?.next
+            node.next = head
+            head?.next = temp
+            head = node
+        } else
+            while (looper != null) {
+                if (index == pos - 1) {
+                    val node = Node(item, null)
+                    val temp = looper.next
+                    looper.next = node
+                    node.next = temp
+                }
+                looper = looper.next
+                index++
             }
-            prev = looper
-            looper = looper.next
-            index++
-        }
+    }
+
+    fun deleteItem(item: Int) {
+        var looper = head
+        /**
+         * First item check
+         */
+        if (head?.data == item) {
+            val temp = head
+            head = null
+            head = temp?.next
+        } else
+            while (looper != null) {
+                if (looper.next?.data == item) {
+                    looper.next = looper.next?.next
+                }
+                looper = looper.next
+            }
     }
 
     fun addItem(item: Int) {
@@ -69,6 +109,22 @@ class LinkedList {
         }
         head = prev
     }
+
+    fun deleteFront() {
+        val temp = head
+        head = null
+        head = temp?.next
+    }
+
+    fun deleteTail() {
+        var looper = head
+        while (looper != null) {
+            looper = looper.next
+            if (looper?.next?.next == null){
+                looper?.next = null
+            }
+        }
+    }
 }
 
 fun main() {
@@ -79,18 +135,4 @@ fun main() {
     linkedList.addItem(4)
     linkedList.addItem(5)
     linkedList.traverse()
-
-    linkedList.insert(30,3)
-    linkedList.insert(40,4)
-    println("inserted -> ")
-    linkedList.traverse()
-    val linkedList2 = LinkedList()
-    linkedList2.addToStart(1)
-    linkedList2.addToStart(2)
-    linkedList2.addToStart(3)
-    linkedList2.addToStart(4)
-    linkedList2.addToStart(5)
-
-    println("linked list ->")
-    linkedList2.traverse()
 }
