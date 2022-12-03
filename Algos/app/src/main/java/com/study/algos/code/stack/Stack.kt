@@ -48,15 +48,33 @@ class Stack<T> constructor(
 
 }
 
+/**
+ * empty the stack, then push the desired item to stack
+ * recursion used to empty add to keep the items and push to stack while going upwards
+ */
 fun <T> pushToBottom(stack: Stack<T>, data: T) {
-    if (stack.isEmpty){
+    if (stack.isEmpty) {
         stack.push(data)
         return
     }
-    var temp:T? = stack.pop()
-    pushToBottom(stack,data)
+    var temp: T? = stack.pop()
+    pushToBottom(stack, data)
     if (temp != null) {
         stack.push(temp)
+    }
+}
+
+/**
+ * empty stack and push to bottom
+ */
+fun <T> reverse(stack: Stack<T>) {
+    if (stack.isEmpty) {
+        return
+    }
+    val temp: T? = stack.pop()
+    reverse(stack)
+    temp?.let {
+        pushToBottom(stack, temp)
     }
 }
 
@@ -69,8 +87,8 @@ private fun main() {
     stack.push(5)
     stack.push(6)
 
-    pushToBottom(stack,777)
-    while (!stack.isEmpty){
+   reverse(stack)
+    while (!stack.isEmpty) {
         println(stack.pop())
     }
 
