@@ -10,7 +10,7 @@ class Stack<T> constructor(
             return stackSize >= stackLimit
         }
 
-    private val isEmpty: Boolean
+    public val isEmpty: Boolean
         get() {
             return stackSize == 0
         }
@@ -45,4 +45,33 @@ class Stack<T> constructor(
         stackSize--
         return temp?.data
     }
+
+}
+
+fun <T> pushToBottom(stack: Stack<T>, data: T) {
+    if (stack.isEmpty){
+        stack.push(data)
+        return
+    }
+    var temp:T? = stack.pop()
+    pushToBottom(stack,data)
+    if (temp != null) {
+        stack.push(temp)
+    }
+}
+
+private fun main() {
+    val stack: Stack<Int> = Stack(10)
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    stack.push(4)
+    stack.push(5)
+    stack.push(6)
+
+    pushToBottom(stack,777)
+    while (!stack.isEmpty){
+        println(stack.pop())
+    }
+
 }
