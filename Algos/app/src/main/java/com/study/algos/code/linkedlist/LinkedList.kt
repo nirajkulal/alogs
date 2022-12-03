@@ -129,11 +129,17 @@ class LinkedList {
         var fast = head
         var slow = head
         var count =0
+        /**
+         * Reach to total-k position
+         */
         while (count<kth){
             count++
             fast = fast?.next
         }
 
+        /**
+         * when faster reaches end second pointer will be pointing to Kth element
+         */
         while (fast !=null){
             fast = fast.next
             slow = slow?.next
