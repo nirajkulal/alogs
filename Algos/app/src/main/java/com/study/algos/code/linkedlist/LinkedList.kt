@@ -69,6 +69,7 @@ class LinkedList {
             head = Node(item, null)
         } else {
             val node = Node(item, null)
+
             /**
              * Identify last node
              */
@@ -119,20 +120,20 @@ class LinkedList {
         var looper = head
         while (looper != null) {
             looper = looper.next
-            if (looper?.next?.next == null){
+            if (looper?.next?.next == null) {
                 looper?.next = null
             }
         }
     }
 
-    fun kthItem(kth: Int){
+    fun kthItem(kth: Int) {
         var fast = head
         var slow = head
-        var count =0
+        var count = 0
         /**
          * Reach to total-k position
          */
-        while (count<kth){
+        while (count < kth) {
             count++
             fast = fast?.next
         }
@@ -140,7 +141,7 @@ class LinkedList {
         /**
          * when faster reaches end second pointer will be pointing to Kth element
          */
-        while (fast !=null){
+        while (fast != null) {
             fast = fast.next
             slow = slow?.next
         }
@@ -149,19 +150,27 @@ class LinkedList {
 }
 
 fun main() {
-    val linkedList = LinkedList()
-    linkedList.addItem(1)
-    linkedList.addItem(2)
-    linkedList.addItem(3)
-    linkedList.addItem(4)
-    linkedList.addItem(5)
-    linkedList.addItem(6)
-    linkedList.addItem(7)
-    linkedList.traverse()
+}
 
-    linkedList.kthItem(1)
-    linkedList.kthItem(2)
-    linkedList.kthItem(3)
-    linkedList.kthItem(4)
-    linkedList.kthItem(5)
+fun merge(linkedList: LinkedList?, linkedList2: LinkedList?) {
+    val mergedList = LinkedList()
+
+    var node1 = linkedList?.head
+    var node2 = linkedList2?.head
+
+    while (node1 != null && node2 != null) {
+        mergedList.addItem(node1.data)
+        mergedList.addItem(node2.data)
+        node1 = node1.next
+        node2 = node2.next
+    }
+    while (node1!=null){
+        mergedList.addItem(node1.data)
+        node1 = node1.next
+    }
+    while (node2!=null){
+        mergedList.addItem(node2.data)
+        node2 = node2.next
+    }
+    mergedList.traverse()
 }
