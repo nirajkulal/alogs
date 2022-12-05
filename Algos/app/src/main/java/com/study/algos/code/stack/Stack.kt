@@ -78,18 +78,28 @@ fun <T> reverse(stack: Stack<T>) {
     }
 }
 
-private fun main() {
-    val stack: Stack<Int> = Stack(10)
-    stack.push(1)
-    stack.push(2)
-    stack.push(3)
-    stack.push(4)
-    stack.push(5)
-    stack.push(6)
 
-   reverse(stack)
-    while (!stack.isEmpty) {
-        println(stack.pop())
+fun reverseNumber(number: Int) {
+
+    var no = number
+    val stack: Stack<Int> = Stack(10)
+    while (no > 0) {
+        stack.push(no % 10)
+        no /= 10
+        println(stack.top())
     }
+
+    var reverse = 0
+    var decimal = 1
+    while (!stack.isEmpty) {
+        reverse = (stack.top()?.times(decimal))?.plus(reverse) ?: 0
+        stack.pop()
+        decimal *= 10
+    }
+    println("reverse of $number -> $reverse")
+}
+
+private fun main() {
+    reverseNumber(155897)
 
 }
